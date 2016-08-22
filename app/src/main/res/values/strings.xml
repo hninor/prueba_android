@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BiblioApps</string>
+    <string name="progress_dialog_update_master_title">Sincronizando tablas maestras</string>
+</resources>

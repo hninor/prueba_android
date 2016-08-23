@@ -18,6 +18,10 @@ public class App {
     private String name;
     /** Not-null value. */
     private String category;
+    /** Not-null value. */
+    private String summary;
+    /** Not-null value. */
+    private String releaseDate;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -37,10 +41,12 @@ public class App {
         this.id = id;
     }
 
-    public App(Long id, String name, String category) {
+    public App(Long id, String name, String category, String summary, String releaseDate) {
         this.id = id;
         this.name = name;
         this.category = category;
+        this.summary = summary;
+        this.releaseDate = releaseDate;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -75,6 +81,26 @@ public class App {
     /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    /** Not-null value. */
+    public String getSummary() {
+        return summary;
+    }
+
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    /** Not-null value. */
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */

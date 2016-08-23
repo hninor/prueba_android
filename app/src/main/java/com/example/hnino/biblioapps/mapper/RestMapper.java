@@ -50,6 +50,8 @@ public class RestMapper {
         App app = new App();
         app.setName(entry.getImName().getLabel());
         app.setCategory(entry.getCategory().getAttributes().getLabel());
+        app.setSummary(entry.getSummary().getLabel());
+        app.setReleaseDate(entry.getImReleaseDate().getLabel());
         long index = mSyncBusiness.insertApp(app);
         for(ImImage imImage : entry.getImImage()){
             imageComToDb(imImage, index);

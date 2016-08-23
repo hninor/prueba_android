@@ -26,6 +26,8 @@ public class AppDao extends AbstractDao<App, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property Category = new Property(2, String.class, "category", false, "CATEGORY");
+        public final static Property Summary = new Property(3, String.class, "summary", false, "SUMMARY");
+        public final static Property ReleaseDate = new Property(4, String.class, "releaseDate", false, "RELEASE_DATE");
     };
 
     private DaoSession daoSession;
@@ -46,7 +48,9 @@ public class AppDao extends AbstractDao<App, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"APP\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"NAME\" TEXT NOT NULL ," + // 1: name
-                "\"CATEGORY\" TEXT NOT NULL );"); // 2: category
+                "\"CATEGORY\" TEXT NOT NULL ," + // 2: category
+                "\"SUMMARY\" TEXT NOT NULL ," + // 3: summary
+                "\"RELEASE_DATE\" TEXT NOT NULL );"); // 4: releaseDate
     }
 
     /** Drops the underlying database table. */
@@ -66,6 +70,8 @@ public class AppDao extends AbstractDao<App, Long> {
         }
         stmt.bindString(2, entity.getName());
         stmt.bindString(3, entity.getCategory());
+        stmt.bindString(4, entity.getSummary());
+        stmt.bindString(5, entity.getReleaseDate());
     }
 
     @Override
@@ -86,7 +92,9 @@ public class AppDao extends AbstractDao<App, Long> {
         App entity = new App( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getString(offset + 1), // name
-            cursor.getString(offset + 2) // category
+            cursor.getString(offset + 2), // category
+            cursor.getString(offset + 3), // summary
+            cursor.getString(offset + 4) // releaseDate
         );
         return entity;
     }
@@ -97,6 +105,8 @@ public class AppDao extends AbstractDao<App, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.getString(offset + 1));
         entity.setCategory(cursor.getString(offset + 2));
+        entity.setSummary(cursor.getString(offset + 3));
+        entity.setReleaseDate(cursor.getString(offset + 4));
      }
     
     /** @inheritdoc */

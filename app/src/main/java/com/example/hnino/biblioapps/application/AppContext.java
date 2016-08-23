@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.hnino.biblioapps.greendao.DaoMaster;
 import com.example.hnino.biblioapps.greendao.DaoSession;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.io.File;
 
@@ -21,6 +22,7 @@ public class AppContext extends Application {
     public void onCreate() {
         super.onCreate();
         daoSession = initDB(this);
+        Fresco.initialize(this);
     }
 
     public DaoSession getDaoSession() {

@@ -1,5 +1,6 @@
 package com.example.hnino.biblioapps;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,11 +11,11 @@ import android.widget.ListView;
 import com.example.hnino.biblioapps.business.CategoryBusiness;
 import com.example.hnino.biblioapps.business.SyncBusiness;
 import com.example.hnino.biblioapps.task.UpdateMastersTask;
+import com.example.hnino.biblioapps.util.Constant;
 
 import java.util.List;
 
 public class CategoryMenuActivity extends AppCompatActivity {
-
 
 
     @Override
@@ -38,16 +39,9 @@ public class CategoryMenuActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
-                final String item = (String) parent.getItemAtPosition(position);
-                view.animate().setDuration(2000).alpha(0)
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                list.remove(item);
-                                adapter.notifyDataSetChanged();
-                                view.setAlpha(1);
-                            }
-                        });
+                Intent intent = new Intent(CategoryMenuActivity.this, AppMenuActivity.class);
+                intent.putExtra(Constant.CATEGORY, (String) parent.getItemAtPosition(position));
+                startActivity(intent);
             }
 
         });

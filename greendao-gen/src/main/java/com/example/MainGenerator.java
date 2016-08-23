@@ -39,6 +39,8 @@ public class MainGenerator {
         app.addIdProperty().primaryKey().autoincrement();
         app.addStringProperty("name").notNull();
         app.addStringProperty("category").notNull();
+        app.addStringProperty("summary").notNull();
+        app.addStringProperty("releaseDate").notNull();
 
 
         return app;

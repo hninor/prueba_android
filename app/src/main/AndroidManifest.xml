@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".CategoryMenuActivity" />
-        <activity android:name=".AppMenuActivity"></activity>
+        <activity android:name=".AppMenuActivity" />
+        <activity android:name=".AppDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.example.hnino.biblioapps.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.hnino.biblioapps.AppDetailActivity;
 import com.example.hnino.biblioapps.R;
 import com.example.hnino.biblioapps.greendao.App;
+import com.example.hnino.biblioapps.util.Constant;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
@@ -56,12 +59,15 @@ public class AbsListViewAdapter extends ArrayAdapter<App> {
         return convertView;
     }
 
-    private View.OnClickListener onClickListener(final App country, final String pos) {
+    private View.OnClickListener onClickListener(final App app, final String pos) {
         return new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-
+                //App app = (App) parent.getItemAtPosition(position);
+                Intent intent = new Intent(activity, AppDetailActivity.class);
+                intent.putExtra(Constant.ID_APP, app.getId());
+                activity.startActivity(intent);
             }
         };
     }

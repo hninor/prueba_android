@@ -6,4 +6,5 @@ package com.example.hnino.biblioapps.util;
 public class Constant {
 
     public final static String CATEGORY = "category app";
+    public final static String ID_APP = "id app";
 }

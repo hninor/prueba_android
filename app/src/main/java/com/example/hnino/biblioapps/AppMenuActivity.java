@@ -27,9 +27,12 @@ public class AppMenuActivity extends AppCompatActivity {
         absListView = (AbsListView)findViewById(R.id.list_item);
         business = new AppBusiness(getApplicationContext());
         String categoryName = getIntent().getStringExtra(Constant.CATEGORY);
-        appList = business.getItemByCategory(categoryName);
+        appList = business.getAppsByCategory(categoryName);
         adapter = new AbsListViewAdapter(this, R.layout.item_abslistview, appList);
         absListView.setAdapter(adapter);
+
+
+
     }
 
 

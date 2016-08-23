@@ -28,9 +28,13 @@ public class AppBusiness {
 
 
 
-    public List<App> getItemByCategory(String categoryName){
+    public List<App> getAppsByCategory(String categoryName){
         QueryBuilder<App> qb = mDaoSession.getAppDao().queryBuilder();
         return  qb.where(AppDao.Properties.Category.eq(categoryName)).list();
+    }
+
+    public App getAppById(long key){
+        return mDaoSession.getAppDao().load(key);
     }
 
 }

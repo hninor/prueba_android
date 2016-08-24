@@ -68,6 +68,7 @@ public class AbsListViewAdapter extends ArrayAdapter<App> {
                 Intent intent = new Intent(activity, AppDetailActivity.class);
                 intent.putExtra(Constant.ID_APP, app.getId());
                 activity.startActivity(intent);
+                activity.overridePendingTransition(R.anim.rotate, R.anim.slide_out_left);
             }
         };
     }

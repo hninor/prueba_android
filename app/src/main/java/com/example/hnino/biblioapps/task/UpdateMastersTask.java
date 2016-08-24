@@ -1,9 +1,13 @@
 package com.example.hnino.biblioapps.task;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
+import com.example.hnino.biblioapps.CategoryMenuActivity;
 import com.example.hnino.biblioapps.R;
 import com.example.hnino.biblioapps.mapper.SyncManager;
 
@@ -17,11 +21,14 @@ public class UpdateMastersTask extends AsyncTask<Void, Void, Void> {
     private ProgressDialog mProgressDialog;
     private Activity mActivity;
     private SyncManager mSyncManager;
+    private String message;
 
     @Override
     protected void onPreExecute() {
-        mProgressDialog.setTitle(mActivity.getString(R.string.progress_dialog_update_master_title));
+        //mProgressDialog.setTitle(mActivity.getString(R.string.progress_dialog_update_master_title));
         mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.setIcon(R.mipmap.ic_launcher);
+        mProgressDialog.setMessage(mActivity.getString(R.string.progress_dialog_update_master_title));
         mProgressDialog.show();
     }
 
@@ -29,11 +36,12 @@ public class UpdateMastersTask extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         if (mProgressDialog.isShowing()) mProgressDialog.dismiss();
-/*        if (message.isEmpty())
-            Toast.makeText(act, act.getString(R.string.alert_master_data_updated), Toast.LENGTH_SHORT).show();
-        else {
-            AlertDialog.Builder alert = new AlertDialog.Builder(act);
-            alert.setMessage(act.getString(R.string.progress_dialog_update_master_error_updating_data) + " " + message);
+        if (message == null) {
+            ((CategoryMenuActivity) mActivity).initialConfiguration();
+            //Toast.makeText(mActivity, mActivity.getString(R.string.alert_master_data_updated), Toast.LENGTH_SHORT).show();
+        } else {
+            AlertDialog.Builder alert = new AlertDialog.Builder(mActivity);
+            alert.setMessage(mActivity.getString(R.string.progress_dialog_update_master_error_updating_data) + " " + message);
             alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     android.os.Process.killProcess(android.os.Process.myPid());
@@ -41,7 +49,7 @@ public class UpdateMastersTask extends AsyncTask<Void, Void, Void> {
                 }
             });
             alert.show();
-        }*/
+        }
     }
 
     @Override
@@ -50,9 +58,9 @@ public class UpdateMastersTask extends AsyncTask<Void, Void, Void> {
         try {
             mSyncManager.syncAll();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            message = e.getMessage();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            message = e.getMessage();
         }
         return null;
     }

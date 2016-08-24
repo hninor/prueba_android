@@ -17,21 +17,27 @@ import java.util.List;
 
 public class CategoryMenuActivity extends AppCompatActivity {
 
+    private CategoryBusiness categoryBusiness;
+    private SyncBusiness syncBusiness;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_menu);
-        SyncBusiness syncBusiness = new SyncBusiness(getApplicationContext());
-        CategoryBusiness categoryBusiness = new CategoryBusiness(getApplicationContext());
+        syncBusiness = new SyncBusiness(getApplicationContext());
+        categoryBusiness = new CategoryBusiness(getApplicationContext());
         if (syncBusiness.thereAreRegistersInDatabase()) {
-            //DO NOTHING
+            initialConfiguration();
         } else {
             new UpdateMastersTask(this).execute();
         }
+
+    }
+
+    public void initialConfiguration(){
         final List<String> list = categoryBusiness.getItemNames();
         ListView listView = (ListView) findViewById(R.id.lvCategories);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item_customize, list);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -42,6 +48,7 @@ public class CategoryMenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(CategoryMenuActivity.this, AppMenuActivity.class);
                 intent.putExtra(Constant.CATEGORY, (String) parent.getItemAtPosition(position));
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
             }
 
         });

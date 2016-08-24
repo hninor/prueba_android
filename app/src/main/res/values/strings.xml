@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">BiblioApps</string>
-    <string name="progress_dialog_update_master_title">Sincronizando tablas maestras</string>
+    <string name="progress_dialog_update_master_title">Danos un momento, por favor</string>
+    <string name="alert_master_data_updated">Sincronización exitosa</string>
+    <string name="progress_dialog_update_master_error_updating_data">Hubó un error en la sincronización</string>
+    <string name="flip">Flip</string>
 </resources>

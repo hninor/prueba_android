@@ -49,7 +49,7 @@ public class AbsListViewAdapter extends ArrayAdapter<App> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        String url = getItem(position).getImage_app().get(2).getUrl();
+        String url = getItem(position).getImage_app().get(0).getUrl();
         Uri uri = Uri.parse(url);
         holder.flag.setImageURI(uri);
         holder.countryName.setText(getItem(position).getName());

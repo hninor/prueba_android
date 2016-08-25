@@ -4,4 +4,7 @@
     <string name="alert_master_data_updated">Sincronización exitosa</string>
     <string name="progress_dialog_update_master_error_updating_data">Hubó un error en la sincronización</string>
     <string name="flip">Flip</string>
+    <string name="categories">Categories</string>
+    <string name="apps">Applications</string>
+    <string name="detail_app">Details</string>
 </resources>

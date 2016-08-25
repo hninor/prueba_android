@@ -20,9 +20,8 @@
     android:layout_height="60dp"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
     android:gravity="center_vertical"
-    android:background="@drawable/my_border_box"
-    android:padding="10dp"
+    android:background="@color/orange"
     android:textColor="@color/white"
     android:textSize="20sp"
-    android:layout_margin="15dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:minHeight="?android:attr/listPreferredItemHeightSmall" />

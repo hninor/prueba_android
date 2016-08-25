@@ -4,7 +4,7 @@
     >
 
     <item android:id="@+id/action_flip"
-        android:icon="@drawable/ic_rotate"
+        android:icon="@drawable/turn"
         android:title="@string/flip"
         app:showAsAction="always"/>
 </menu>

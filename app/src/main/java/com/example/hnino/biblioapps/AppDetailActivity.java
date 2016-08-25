@@ -34,9 +34,16 @@ public class AppDetailActivity extends AppCompatActivity implements FragmentMana
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_flip);
+        //Ajustes Action bar
+        getSupportActionBar().setTitle(R.string.detail_app);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+        //Capturando datos enviados desde la anterior actividad
         Long idApp = getIntent().getLongExtra(Constant.ID_APP, new Long(1));
+        //Instanciando clases de negocio
         AppBusiness appBusiness = new AppBusiness(getApplicationContext());
         App app = appBusiness.getAppById(idApp);
+        //Creando el bundle
         args = new Bundle();
         args.putString(Constant.TITLE, app.getName());
         args.putString(Constant.SUMMARY, app.getSummary());
